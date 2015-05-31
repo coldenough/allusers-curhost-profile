@@ -1,4 +1,5 @@
 <#
+cd C:\Users\dkoldunov\Documents\GitHub\allusers-curhost-profile
 cp .\Microsoft.PowerShell_profile.ps1 `
     C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
 #>
