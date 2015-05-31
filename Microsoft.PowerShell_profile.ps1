@@ -85,4 +85,4 @@ If($host.Name -eq 'ConsoleHost') {
   import-module PSReadline
 }
 
-Clear
+# Clear
