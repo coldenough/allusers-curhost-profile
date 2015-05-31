@@ -1,21 +1,26 @@
+<#
+cp .\Microsoft.PowerShell_profile.ps1 `
+    C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+#>
 cd 'c:/'
 
 # Aliases
 Set-Alias npp "C:\Program Files (x86)\Notepad++\notepad++.exe"
 
-###############
+# Modules
 
+<#
 $AvailableModuleCsv = "$env:Temp/AvailableModule.csv"
 New-Item -ItemType file -Path $AvailableModuleCsv -Force | Out-Null
 
 Get-Module -ListAvailable | Select-Object Name | Export-Csv -Path $AvailableModuleCsv -NoTypeInformation
 $AvailableModuleList = ( Get-Content $AvailableModuleCsv ) | Select-Object -Skip 1
 $AvailableModuleList
+#>
 
-if ( Select-String -Path $AvailableModuleCsv -Pattern PsGet ){
-  Write-Host
+#if (Select-String -Path $AvailableModuleCsv -Pattern PsGet) {
+if (Get-Module -ListAvailable -Name PsGet) {
   Write-Verbose 'PsGet already installed'
-  Write-Host
 } else {
   Invoke-Expression (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 }
