@@ -3,14 +3,6 @@ cd 'c:/'
 # Aliases
 Set-Alias npp "C:\Program Files (x86)\Notepad++\notepad++.exe"
 
-# Post Git
-# Load posh-git example profile
-# . (Resolve-Path "$env:LOCALAPPDATA\GitHub\shell.ps1")
-# . (Resolve-Path "$env:github_posh_git\profile.example.ps1")
-
-#cd ~/Documents/GitHub
-
-
 ###############
 
 $AvailableModuleCsv = "$env:Temp/AvailableModule.csv"
