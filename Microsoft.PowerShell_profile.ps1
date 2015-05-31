@@ -25,16 +25,13 @@ if (Get-Module -ListAvailable -Name PsGet) {
   Invoke-Expression (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 }
 
-
-if ( Select-String -Path $AvailableModuleCsv -Pattern PsReadLine ){
-  Write-Host
+if (Get-Module PsReadLine) {
   Write-Verbose 'PsReadLine already installed'
-  Write-Host
 } else {
   Install-Module PsReadLine
 }
 
-######################
+# Functions
 
 function Get-Parameter ( $Cmdlet, [switch]$ShowCommon, [switch]$Full ) {
 
