@@ -15,9 +15,6 @@ if (Test-Path $notepadpp) {
 function getParam {Get-Parameter $Args[0] -ShowCommon}
 Set-Alias gpm getParam
 
-function getParam {Get-Parameter $Args[0] -ShowCommon}
-Set-Alias gpm getParam
-
 # Modules
 
 if (Get-Module -ListAvailable -Name PsGet) {
@@ -73,7 +70,7 @@ function Get-Parameter ( $Cmdlet, [switch]$ShowCommon, [switch]$Full ) {
 			$output += $process
 		}
 		if ( ! $Full ) { 
-			$Output | Select-Object Name, Type, ParameterSet, IsMandatory, Pipeline
+			$Output | Select-Object Name, Type, ParameterSet, IsMandatory, Pipeline | ft -AutoSize
 		}
 		else { Write-Output $Output }
 	}
