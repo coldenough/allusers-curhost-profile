@@ -1,7 +1,7 @@
 <#
 cd C:\Users\dkoldunov\Documents\GitHub\allusers-curhost-profile
-cp .\Microsoft.PowerShell_profile.ps1 `
-    C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+$dest = Split-Path $PROFILE.AllUsersCurrentHost
+cp .\Microsoft.PowerShell_profile.ps1 $dest
 #>
 cd 'c:/'
 
@@ -10,16 +10,6 @@ Set-Alias npp "C:\Program Files (x86)\Notepad++\notepad++.exe"
 
 # Modules
 
-<#
-$AvailableModuleCsv = "$env:Temp/AvailableModule.csv"
-New-Item -ItemType file -Path $AvailableModuleCsv -Force | Out-Null
-
-Get-Module -ListAvailable | Select-Object Name | Export-Csv -Path $AvailableModuleCsv -NoTypeInformation
-$AvailableModuleList = ( Get-Content $AvailableModuleCsv ) | Select-Object -Skip 1
-$AvailableModuleList
-#>
-
-#if (Select-String -Path $AvailableModuleCsv -Pattern PsGet) {
 if (Get-Module -ListAvailable -Name PsGet) {
   Write-Verbose 'PsGet already installed'
 } else {
@@ -73,13 +63,13 @@ function Get-Parameter ( $Cmdlet, [switch]$ShowCommon, [switch]$Full ) {
 			$output += $process
 		}
 		if ( ! $Full ) { 
-			$Output | Select-Object Name, Type, ParameterSet, IsMandatory, Pipeline | ft -AutoSize
+			$Output | Select-Object Name, Type, ParameterSet, IsMandatory, Pipeline
 		}
 		else { Write-Output $Output }
 	}
 }
 
-If($host.Name -eq 'ConsoleHost') {
+If ($host.Name -eq 'ConsoleHost') {
   import-module PSReadline
 }
 
