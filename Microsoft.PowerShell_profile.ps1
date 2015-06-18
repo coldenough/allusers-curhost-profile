@@ -6,7 +6,14 @@ cp .\Microsoft.PowerShell_profile.ps1 $dest
 cd 'c:/'
 
 # Aliases
-Set-Alias npp "C:\Program Files (x86)\Notepad++\notepad++.exe"
+
+$notepadpp = "C:\Program Files (x86)\Notepad++\notepad++.exe"
+if (Test-Path $notepadpp) {
+  Set-Alias npp "$notepadpp"
+}
+
+function getParam {Get-Parameter $Args[0] -ShowCommon}
+Set-Alias gpm getParam
 
 # Modules
 
