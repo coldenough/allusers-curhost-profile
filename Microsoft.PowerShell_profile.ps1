@@ -15,6 +15,9 @@ if (Test-Path $notepadpp) {
 function getParam {Get-Parameter $Args[0] -ShowCommon}
 Set-Alias gpm getParam
 
+function getParam {Get-Parameter $Args[0] -ShowCommon}
+Set-Alias gpm getParam
+
 # Modules
 
 if (Get-Module -ListAvailable -Name PsGet) {
